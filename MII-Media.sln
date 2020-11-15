@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MII-Media", "MII-Media.csproj", "{AD27C400-33F8-430C-A41F-823878957258}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD27C400-33F8-430C-A41F-823878957258}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD27C400-33F8-430C-A41F-823878957258}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD27C400-33F8-430C-A41F-823878957258}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD27C400-33F8-430C-A41F-823878957258}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C703FB59-15FE-4958-9A50-FBFCC63BC368}
+	EndGlobalSection
+EndGlobal
