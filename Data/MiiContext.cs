@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using MII_Media.Models;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,6 +18,6 @@ namespace MII_Media.Data
         {
         }
 
-        
+        public DbSet<Friend> Friends { get; set; }
     }
 }

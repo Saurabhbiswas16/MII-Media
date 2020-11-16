@@ -1,0 +1,52 @@
+﻿@model MII_Media.Models.Friend
+
+@{
+    ViewData["Title"] = "SendRequest";
+}
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{
+    var user = await UserManager.GetUserAsync(User);
+   
+}
+<h1>SendRequest</h1>
+
+<h4>Friend</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SendRequest">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+
+                <input value="@user.Email" type="hidden" asp-for="User1" class="form-control" />
+
+            </div>
+            <div class="form-group">
+                <label asp-for="User2" class="control-label"></label>
+                <input asp-for="User2" class="form-control" />
+                <span asp-validation-for="User2" class="text-danger"></span>
+            </div>
+
+            <input type="hidden" class="form-check-input" asp-for="Sent" /> @Html.DisplayNameFor(model => model.Sent)
+
+
+            <input type="hidden" class="form-check-input" asp-for="Receive" /> @Html.DisplayNameFor(model => model.Receive)
+
+
+
+            <input type="hidden" class="form-check-input" asp-for="Confirmed" /> @Html.DisplayNameFor(model => model.Confirmed)
+
+
+            <div class="form-group">
+                <input type="submit" value="Request" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

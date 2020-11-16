@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\saurabh biswas\\source\\repos\\Github-MII-Media\\Project_CE011_CE018\\MII-Media.csproj": {}
+    "C:\\Users\\saurabh biswas\\Desktop\\Project_CE011_CE018\\MII-Media.csproj": {}
   },
   "projects": {
-    "C:\\Users\\saurabh biswas\\source\\repos\\Github-MII-Media\\Project_CE011_CE018\\MII-Media.csproj": {
+    "C:\\Users\\saurabh biswas\\Desktop\\Project_CE011_CE018\\MII-Media.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\saurabh biswas\\source\\repos\\Github-MII-Media\\Project_CE011_CE018\\MII-Media.csproj",
+        "projectUniqueName": "C:\\Users\\saurabh biswas\\Desktop\\Project_CE011_CE018\\MII-Media.csproj",
         "projectName": "MII-Media",
-        "projectPath": "C:\\Users\\saurabh biswas\\source\\repos\\Github-MII-Media\\Project_CE011_CE018\\MII-Media.csproj",
+        "projectPath": "C:\\Users\\saurabh biswas\\Desktop\\Project_CE011_CE018\\MII-Media.csproj",
         "packagesPath": "C:\\Users\\saurabh biswas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\saurabh biswas\\source\\repos\\Github-MII-Media\\Project_CE011_CE018\\obj\\",
+        "outputPath": "C:\\Users\\saurabh biswas\\Desktop\\Project_CE011_CE018\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -41,21 +41,17 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
-            "EntityFramework": {
+            "Microsoft.AspNet.Providers.Core": {
               "target": "Package",
-              "version": "[6.4.4, )"
+              "version": "[2.0.0, )"
             },
-            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
+            "Microsoft.AspNetCore.Identity": {
               "target": "Package",
-              "version": "[3.1.9, )"
+              "version": "[2.2.0, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.9, )"
-            },
-            "Microsoft.AspNetCore.Identity.UI": {
-              "target": "Package",
-              "version": "[3.1.9, )"
+              "version": "[5.0.0, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -85,7 +81,11 @@
             },
             "System.Configuration.ConfigurationManager": {
               "target": "Package",
-              "version": "[4.7.0, )"
+              "version": "[5.0.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.2, )"
             }
           },
           "imports": [

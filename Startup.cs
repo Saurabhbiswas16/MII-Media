@@ -49,6 +49,7 @@ namespace MII_Media
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<IFriendRepository, FriendRepository>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IEmailService, EmailService>();
 

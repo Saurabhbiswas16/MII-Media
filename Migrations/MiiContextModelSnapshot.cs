@@ -96,6 +96,33 @@ namespace MII_Media.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("MII_Media.Models.Friend", b =>
+                {
+                    b.Property<int>("FriendId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<bool>("Confirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Receive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Sent")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("User1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("User2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("FriendId");
+
+                    b.ToTable("Friends");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
