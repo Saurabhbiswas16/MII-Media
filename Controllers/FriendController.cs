@@ -47,9 +47,10 @@ namespace MII_Media.Controllers
             return View(result);
         }
 
-        [HttpPost,ActionName("ReceiveRequest/{id:int}")]
-        public async Task<IActionResult> ReceiveRequestConfirmed(int id)
+        [HttpGet("ReceiveRequestConfirmed/{id}")]
+        public async Task<IActionResult> ReceiveRequestConfirmed ( int id)
         {
+           
             var currentUser = await userManager.GetUserAsync(User);
             
             var result = await friendRepository.ConfirmedRequestReceive(id);

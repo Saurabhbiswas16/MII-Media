@@ -10,41 +10,47 @@
     <h4>Friend</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FriendId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FriendId)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.User1)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.User1)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.User2)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.User2)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Sent)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Sent)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Receive)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Receive)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Confirmed)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Confirmed)
         </dd>
     </dl>
 </div>
 <div>
-    
-    <a asp-action="ReceiveRequest" asp-controller="Friend" asp-route-id="@Model.FriendId">Confirm</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-primary btn-lg active" asp-controller="Friend" asp-action="ReceiveRequestConfirmed"
+       asp-route-id="@Model.FriendId">Confirm</a>
+   
 </div>
 
