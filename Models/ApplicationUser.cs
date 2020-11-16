@@ -14,7 +14,7 @@ namespace MII_Media.Models
         public String FirstName { get; set; }
         public String LastName { get; set; }
         public DateTime DOB { get; set; }
-
+        public string ProfilePicPath { get; set; }
         public string Bio { get; set; }
     }
 }

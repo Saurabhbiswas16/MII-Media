@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using MII_Media.Data;
@@ -7,6 +8,7 @@ using MII_Media.Service;
 using MII_Media.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,16 +22,18 @@ namespace MII_Media.Repository
         private readonly IUserService userService;
         private readonly IConfiguration configuration;
         private readonly IEmailService emailService;
+        private readonly IWebHostEnvironment hostingEnvironment;
 
        // private MiiContext context = new MiiContext();
         public AccountRepository(UserManager<ApplicationUser> userManager,SignInManager<ApplicationUser> signInManager,
-            IUserService userService,IConfiguration configuration,IEmailService emailService)
+            IUserService userService,IConfiguration configuration,IEmailService emailService, IWebHostEnvironment hostingEnvironment)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.userService = userService;
             this.configuration = configuration;
             this.emailService = emailService;
+            this.hostingEnvironment = hostingEnvironment;
         }
         public async Task<IdentityResult> CreateUserAsync(SignUpUserModel usermodel)
         {
@@ -155,19 +159,32 @@ namespace MII_Media.Repository
             user.DOB = appUser.DOB;
             user.PhoneNumber = appUser.PhoneNumber;
             user.Bio = appUser.Bio;
+            //user.ProfilePic = appUser.ProfilePicPath;
             return user ;
         }
 
         public async Task<IdentityResult> EditProfileConfirm(EditProfile model)
         {
             ApplicationUser currentUser = new ApplicationUser();
-            currentUser = await userManager.FindByEmailAsync(model.Email); ;
+            currentUser = await userManager.FindByEmailAsync(model.Email);
+            string uniqueFileName = currentUser.ProfilePicPath;
             currentUser.FirstName = model.FirstName;
             currentUser.LastName = model.LastName;
             currentUser.PhoneNumber = model.PhoneNumber;
             currentUser.DOB = model.DOB;
             currentUser.Bio = model.Bio;
-            
+
+            if (model.ProfilePic != null)
+            {
+                string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "images");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.ProfilePic.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.ProfilePic.CopyTo(fileStream);
+                }
+            }
+            currentUser.ProfilePicPath = uniqueFileName;
            var result= await userManager.UpdateAsync(currentUser);
 
             return result;

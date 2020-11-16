@@ -6,6 +6,7 @@
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+@*@inject IEnumerable<MII_Media.Models.Post> posts*@
 @{
     var user = await UserManager.GetUserAsync(User);
     var tempBio = "Add the bio from Edit Profile";
@@ -14,79 +15,83 @@
 @if (SignInManager.IsSignedIn(User))
 {
    
-    <header>
+<header>
+    @user.ProfilePicPath
 
-        <div class="container">
+    <div class="container">
 
-            <div class="profile">
+        <div class="profile">
 
-                <div class="profile-image">
-
-                    <img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces" alt="">
-
-                </div>
-
-                <div class="profile-user-settings">
-
-                    <h1 class="profile-user-name">@(user.UserName)</h1><span><h3>
-                            <a class="btn btn-primary btn-lg active" asp-controller="Account" asp-action="EditProfile"
-                               asp-route-email="@user.Email">Edit Profile</a>
-                        </h3>
-                    </span>
-                    
-                   
-
-
-
-                </div>
-
-                <div class="profile-stats">
-
-                    <ul>
-                        <li><span class="profile-stat-count">164</span> posts</li>
-                        <li><span class="profile-stat-count">188</span> followers</li>
-                        <li><span class="profile-stat-count">206</span> following</li>
-                    </ul>
-
-                </div>
-
-                <div class="profile-bio">
-
-                    <p><span class="profile-real-name">@(user.FirstName)  @(user.LastName)</span> </p>
-                    <p><span> @(user.Bio ?? tempBio)   </span></p>
-
-                </div>
+            <div class="profile-image">
+                <img src="~/images/@(user.ProfilePicPath)" alt="" height="100" width="100">
 
             </div>
-            <!-- End of profile section -->
+
+            <div class="profile-user-settings">
+
+                <h1 class="profile-user-name">@(user.UserName)</h1><span>
+                    <h3>
+                        <a class="btn btn-primary btn-lg active" asp-controller="Account" asp-action="EditProfile"
+                           asp-route-email="@user.Email">Edit Profile</a>
+                    </h3>
+                </span>
+
+
+
+
+
+            </div>
+
+            <div class="profile-stats">
+
+                <ul>
+                    <li><span class="profile-stat-count">164</span> posts</li>
+                    <li><span class="profile-stat-count">188</span> followers</li>
+                    <li><span class="profile-stat-count">206</span> following</li>
+                </ul>
+
+            </div>
+
+            <div class="profile-bio">
+
+                <p><span class="profile-real-name">@(user.FirstName)  @(user.LastName)</span> </p>
+                <p><span> @(user.Bio ?? tempBio)   </span></p>
+
+            </div>
 
         </div>
-        <!-- End of container -->
+        <!-- End of profile section -->
 
-    </header>
+    </div>
+    <!-- End of container -->
+
+</header>
 
     <main>
 
         <div class="container">
 
             <div class="gallery">
+                @foreach (Post post in ViewBag.AllPosts)
+                {
+                    <div class="gallery-item" tabindex="0">
 
-                <div class="gallery-item" tabindex="0">
+                        <img src="~/images/@post.PostPath" class="gallery-image" alt="">
 
-                    <img src="https://images.unsplash.com/photo-1511765224389-37f0e77cf0eb?w=500&h=500&fit=crop" class="gallery-image" alt="">
+                        <div class="gallery-item-info">
 
-                    <div class="gallery-item-info">
+                            <ul>
+                                <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i>@post.Likes</li>
+                                <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i>11</li>
+                            </ul>
 
-                        <ul>
-                            <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 56</li>
-                            <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
-                        </ul>
+                        </div>
 
                     </div>
+                }
 
-                </div>
 
-                <div class="gallery-item" tabindex="0">
+                @*<div class="gallery-item" tabindex="0">
 
                     <img src="https://images.unsplash.com/photo-1497445462247-4330a224fdb1?w=500&h=500&fit=crop" class="gallery-image" alt="">
 
@@ -120,7 +125,7 @@
 
                     </div>
 
-                </div>
+                </div>*@
 
 
 

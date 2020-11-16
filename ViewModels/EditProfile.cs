@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace MII_Media.ViewModels
         public string PhoneNumber { get; set; }
 
         public string Bio { get; set; }
+        public IFormFile ProfilePic { get; set; }
         public bool EditSuccess { get; set; }
     }
 }

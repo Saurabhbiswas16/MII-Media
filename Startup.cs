@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
+using Hangfire;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -35,7 +36,7 @@ namespace MII_Media
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<MiiContext>().AddDefaultTokenProviders();
-
+            
             services.Configure<IdentityOptions>(options =>
             {
                 options.SignIn.RequireConfirmedEmail = true;
@@ -45,6 +46,8 @@ namespace MII_Media
             {
                 config.LoginPath="/login";
             });
+            services.AddHangfire(x => x.UseSqlServerStorage(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddHangfireServer();
 
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -52,6 +55,8 @@ namespace MII_Media
             services.AddScoped<IFriendRepository, FriendRepository>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IPostRepository, SQLPostRepository>();
+            services.AddScoped<ICommentRepository, SQLCommentRepository>();
 
             services.Configure<SMTPConfigModel>(Configuration.GetSection("SMTPConfig"));
         }
@@ -63,6 +68,7 @@ namespace MII_Media
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseHangfireServer();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

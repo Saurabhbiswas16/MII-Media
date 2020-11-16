@@ -19,5 +19,9 @@ namespace MII_Media.Data
         }
 
         public DbSet<Friend> Friends { get; set; }
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<MII_Media.ViewModels.PostEditViewModel> PostEditViewModel { get; set; }
+
     }
 }

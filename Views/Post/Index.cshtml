@@ -1,0 +1,29 @@
+﻿@model IEnumerable<MII_Media.Models.Post>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div class="card-deck">
+    @foreach (var post in Model)
+    {
+        var photoPath = "~/images/" + post.PostPath;
+        <div class="card m-3" style="min-width: 18rem; max-width:30.5%;">
+            <img class="card-img-top imageThumbnail" src="@photoPath"
+                 asp-append-version="true" />
+            <div class="card-body">@post.Caption</div>
+            <div class="card-footer text-center">
+                <a asp-controller="post" asp-action="details"
+                   asp-route-id="@post.PostId" class="btn btn-success m-1">View</a>
+                <a asp-controller="post" asp-action="edit"
+                   asp-route-id="@post.PostId" class="btn btn-primary m-1">Edit</a>
+                <a asp-controller="post" asp-action="delete"
+                   asp-route-id="@post.PostId" class="btn btn-danger m-1">Delete</a>
+            </div>
+        </div>
+    }
+</div>
+

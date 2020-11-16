@@ -15,11 +15,19 @@ namespace MII_Media.Controllers
     public class AccountController : Controller
     {
         private readonly IAccountRepository accountRepository;
-       // private MiiContext context = new MiiContext();
-        public AccountController(IAccountRepository accountRepository)
+        private readonly IPostRepository postRepository;
+
+        public AccountController(IAccountRepository accountRepository, IPostRepository postRepository)
         {
             this.accountRepository = accountRepository;
+            this.postRepository = postRepository;
         }
+
+        // private MiiContext context = new MiiContext();
+        //public AccountController(IAccountRepository accountRepository)
+        //{
+        //    this.accountRepository = accountRepository;
+        //}
         [Route("signup")]
         public IActionResult Signup()
         {
@@ -213,6 +221,7 @@ namespace MII_Media.Controllers
         public IActionResult Profile()
         {
             // var result =accountRepository.GetProfile();
+            ViewBag.AllPosts = postRepository.GetAllPosts();
             return View();
         }
 
