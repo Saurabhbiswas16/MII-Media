@@ -1,8 +1,63 @@
-﻿@{
+﻿@model IEnumerable<Post>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    var user = await UserManager.GetUserAsync(User);
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome DDU</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+<link href="~/css/index.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Rokkitt" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<section class="hero">
+    <div class="container">
+        <div class="row">
+            @foreach (Post post in Model)
+            {
+                var owner = await UserManager.FindByEmailAsync(post.AppUser);
+                <div class="col-lg-6 offset-lg-3">
+
+                    <div class="cardbox shadow-lg bg-white">
+
+                        <div class="cardbox-heading">
+                            <div class="media m-0">
+                                <div class="d-flex mr-3">
+                                    <a asp-action="FriendsProfile" asp-controller="Friend" asp-route-email="@post.AppUser">
+                                    <img class="img-fluid rounded-circle" src="~/images/@owner.ProfilePicPath" alt="User">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <p class="m-0" style="font-weight:bold">@owner.FirstName @owner.LastName</p>
+                                    <small><span><i class="icon ion-md-pin"></i>@post.AppUser</span></small>
+                                        
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cardbox-item">
+                            <img class="img-fluid" src="~/images/@(post.PostPath)" alt="Image">
+                        </div><div class="cardbox-comments">
+                            <span class="comment-avatar float-left">
+                                <img class="rounded-circle" src="~/images/@(user.ProfilePicPath)" alt="">
+                            </span>
+                            <form asp-action="CreateComment" asp-controller="comment">
+                                <div class="search">
+                                    <input name="msg" placeholder="Write a comment" type="text">
+                                    <input type="hidden" name="id" class="form-control" value="@post.PostId" />
+                                    <input type="submit" value="Add" class="btn btn-primary" />
+                                </div>
+                            </form>
+                            
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>
+</section>

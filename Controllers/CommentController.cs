@@ -46,6 +46,24 @@ namespace MII_Media.Controllers
             }
             return View(comment);
         }
+        [HttpPost]
+        public async Task<IActionResult> CreateComment(string msg,int id)
+        {
+            Comment comment = null;
+            if (msg != null)
+            {
+                comment = new Comment
+                {
+                    Message = msg,
+                    CommentTime = DateTime.Now,
+                    PostId = id,
+                    Commenter = await userManager.GetEmailAsync(await userManager.GetUserAsync(User))
+                };
+                _comRepo.Add(comment);
+                return RedirectToAction("Details", "Post", new { id = comment.PostId });
+            }
+            return RedirectToAction("Index", "Home");
+        }
         [HttpGet]
         public IActionResult Delete(int Id)
         {

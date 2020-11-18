@@ -29,25 +29,25 @@ namespace MII_Media.Repository
             this.configuration = configuration;
             this.miiContext = miiContext;
         }
-
-        public async Task<Friend> SendRequestConfirmed(Friend friend)
+        public async Task<Friend> SendRequestConfirmed(string user1, string user2)
         {
+
             Friend addFriend = new Friend();
-            addFriend.User1 = friend.User1;
-            addFriend.User2 = friend.User2;
+            addFriend.User1 = user1;
+            addFriend.User2 = user2;
             addFriend.Sent = true;
             addFriend.Receive = false;
             addFriend.Confirmed = false;
             await miiContext.Friends.AddAsync(addFriend);
             await miiContext.SaveChangesAsync();
-            Friend friend1 = await ReceiveRequestConfirmed(friend);
+            Friend friend1 = await ReceiveRequestConfirmed(user1, user2);
             return addFriend;
         }
-        public async Task<Friend> ReceiveRequestConfirmed(Friend friend)
+        public async Task<Friend> ReceiveRequestConfirmed(string user1, string user2)
         {
             Friend ReceiveAddFriend = new Friend();
-            ReceiveAddFriend.User1 = friend.User2;
-            ReceiveAddFriend.User2 = friend.User1;
+            ReceiveAddFriend.User1 = user2;
+            ReceiveAddFriend.User2 = user1;
             ReceiveAddFriend.Receive = true;
             ReceiveAddFriend.Sent = false;
             ReceiveAddFriend.Confirmed = false;
@@ -55,6 +55,7 @@ namespace MII_Media.Repository
             await miiContext.SaveChangesAsync();
             return ReceiveAddFriend;
         }
+
 
         public async Task<Friend> GetAllReceiveRequest(string email)
         {
@@ -96,6 +97,20 @@ namespace MII_Media.Repository
             }
             return userList;
             
+        }
+        public async Task<bool> FriendsConfirmed(string user1, string user2)
+        {
+
+            var receiveUser = miiContext.Friends.Include(r => r.User2).FirstOrDefault(r => r.User1 == user1 && r.Confirmed == true && r.User2 == user2);
+            if (receiveUser == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
         }
     }
 }

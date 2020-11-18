@@ -31,16 +31,24 @@ namespace MII_Media.Controllers
             return View();
         }
 
-        [HttpGet("send-request")]
-        public IActionResult SendRequest()
-        {
+        //[HttpGet("send-request")]
+        //public IActionResult SendRequest()
+        //{
 
-            return View();
-        }
-        [HttpPost("send-request")]
-        public async Task<IActionResult> SendRequest(Friend friend)
+        //    return View();
+        //}
+        //[HttpPost("send-request")]
+        //public async Task<IActionResult> SendRequest(Friend friend)
+        //{
+        //    var result = await friendRepository.SendRequestConfirmed(friend);
+        //    return View(result);
+        //}
+        [HttpGet("send-request/${Email}")]
+        public async Task<IActionResult> SendRequest(string Email)
         {
-            var result = await friendRepository.SendRequestConfirmed(friend);
+            var currentUser = await userManager.GetUserAsync(User);
+            var result = await friendRepository.SendRequestConfirmed(currentUser.Email, Email);
+            RedirectToAction("GetAllFriends", "Friend");
             return View(result);
         }
 
@@ -76,20 +84,22 @@ namespace MII_Media.Controllers
         [HttpGet("FriendsProfile/${Email}")]
         public async Task<IActionResult> FriendsProfile(string Email)
         {
-            var User = await userManager.FindByEmailAsync(Email);
-            ViewBag.friendProfile = User;
-            ViewBag.AllPosts = postRepository.GetAllPosts(Email);
-            /*if ()
+            var currentUser = await userManager.GetUserAsync(User);
+            var friend = await userManager.FindByEmailAsync(Email);
+            ViewBag.friendProfile = friend;
+            bool Confirmed = await friendRepository.FriendsConfirmed(currentUser.Email, Email);
+            if (Confirmed)
             {
-                
+                ViewBag.AllPosts = postRepository.GetAllPosts(Email);
             }
             else
             {
-
-            }*/
+                ViewBag.sendRequest = true;
+            }
             // var result = await friendRepository.FetchedAllFriends(currentUser.Email);
             return View();
         }
+
         [HttpGet("ListUsers")]
         public ActionResult ListUsers()
         {
