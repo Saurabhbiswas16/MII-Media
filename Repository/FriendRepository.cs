@@ -85,5 +85,17 @@ namespace MII_Media.Repository
             miiContext.SaveChanges();
             return receiveUser;
         }
+        public async Task<IEnumerable<ApplicationUser>>  FetchedAllFriends(string email)
+        {
+            var allEmail= (IEnumerable<string>)miiContext.Friends.Where(c => c.User1 == email).Select(c => c.User2);
+            IList<ApplicationUser> userList = new List<ApplicationUser>();
+            foreach(string user2Email in allEmail)
+            {
+               var  applicationUser = await userManager.FindByEmailAsync(user2Email);
+                userList.Add(applicationUser);
+            }
+            return userList;
+            
+        }
     }
 }

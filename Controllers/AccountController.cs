@@ -186,7 +186,7 @@ namespace MII_Media.Controllers
             return View(model);
         }
 
-        [AllowAnonymous, HttpGet("reset-password")]
+        [AllowAnonymous, HttpGet("reset-password/{uid}/{token}")]
         public IActionResult ResetPassword(string uid, string token)
         {
             ResetPasswordModel resetPasswordModel = new ResetPasswordModel

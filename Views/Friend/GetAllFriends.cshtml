@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ApplicationUser>;
+@{
+    ViewData["Title"] = "GetAllFriends";
+}
+
+
+<link href="~/css/Friends.css" rel="stylesheet" />
+
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="people-nearby">
+                <div class="nearby-user">
+
+                    @foreach (var freind in Model)
+                    {
+                        <div class="row">
+                            <div class="col-md-2 col-sm-2">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user" class="profile-photo-lg">
+                            </div>
+                            <div class="col-md-7 col-sm-7">
+                                <h5><a href="#" class="profile-link">@freind.FirstName  @freind.LastName</a></h5>
+                                <p>@freind.Email</p>
+                                <p class="text-muted">@freind.DOB</p>
+                            </div>
+                            <div class="col-md-3 col-sm-3">
+                                <button class="btn btn-primary pull-right">Profile</button>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

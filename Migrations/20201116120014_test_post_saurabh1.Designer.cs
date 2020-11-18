@@ -4,14 +4,16 @@ using MII_Media.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MII_Media.Migrations
 {
     [DbContext(typeof(MiiContext))]
-    partial class MiiContextModelSnapshot : ModelSnapshot
+    [Migration("20201116120014_test_post_saurabh1")]
+    partial class test_post_saurabh1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

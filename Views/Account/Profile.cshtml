@@ -16,7 +16,7 @@
 {
    
 <header>
-    @user.ProfilePicPath
+    
 
     <div class="container">
 
@@ -46,8 +46,10 @@
 
                 <ul>
                     <li><span class="profile-stat-count">164</span> posts</li>
-                    <li><span class="profile-stat-count">188</span> followers</li>
-                    <li><span class="profile-stat-count">206</span> following</li>
+                    <a class="btn btn-primary btn-lg active" asp-controller="Friend" asp-action="GetAllFriends">
+                    <li><span class="profile-stat-count">200</span> Friends</li></a>
+                    
+
                 </ul>
 
             </div>

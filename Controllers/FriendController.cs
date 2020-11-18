@@ -33,7 +33,7 @@ namespace MII_Media.Controllers
             return View();
         }
         [HttpPost("send-request")]
-        public async Task<IActionResult> SendRequest(Friend friend )
+        public async Task<IActionResult> SendRequest(Friend friend)
         {
             var result = await friendRepository.SendRequestConfirmed(friend);
             return View(result);
@@ -48,16 +48,25 @@ namespace MII_Media.Controllers
         }
 
         [HttpGet("ReceiveRequestConfirmed/{id}")]
-        public async Task<IActionResult> ReceiveRequestConfirmed ( int id)
+        public async Task<IActionResult> ReceiveRequestConfirmed(int id)
         {
-           
+
             var currentUser = await userManager.GetUserAsync(User);
-            
+
             var result = await friendRepository.ConfirmedRequestReceive(id);
-            
+
 
             return View();
 
+        }
+
+        [HttpGet("GetAllFriends")]
+        public async Task<IActionResult> GetAllFriends()
+        {
+            var currentUser = await userManager.GetUserAsync(User);
+
+            var result = await friendRepository.FetchedAllFriends(currentUser.Email);
+            return View(result);
         }
     }
 }

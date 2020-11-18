@@ -1,4 +1,5 @@
 ﻿using MII_Media.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MII_Media.Repository
@@ -11,5 +12,7 @@ namespace MII_Media.Repository
 
         Task<Friend> ConfirmedRequestSent(string user1, string user2);
         Task<Friend> ConfirmedRequestReceive(int friendId);
+
+        Task<IEnumerable<ApplicationUser>> FetchedAllFriends(string email);
     }
 }

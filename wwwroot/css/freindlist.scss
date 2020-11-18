@@ -1,0 +1,242 @@
+﻿body {
+}
+$dark-brown: #3F51B5;
+$primary-pink: #C5CAE9;
+$text-color: #cec9c3;
+.hidden {
+    display: none;
+}
+
+.center {
+    display: block;
+    margin: 0 auto; 
+}
+.text-pink {
+    color: $dark-brown
+}
+
+
+.text-brown {
+    color: $primary-pink
+}
+
+@mixin flexbox {
+    display: -moz-box;
+    display: -webkit-flex;
+    display: flex;
+    display: -ms-flexbox;
+}
+
+@mixin align-items($alignment) {
+    -webkit-box-align: $alignment;
+    -webkit-align-items: $alignment;
+    -ms-flex-align: $alignment ;
+    align-items: $alignment
+}
+@mixin justify-content($alignment) 
+{
+    -webkit-box-pack: $alignment;
+    -webkit-justify-content: $alignment;
+    -ms-flex-pack: $alignment;
+    justify-content: $alignment;
+}
+html, body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0 ;
+    padding: 0 ;
+    font-size: 13px;
+    background: #f1f1f1
+}
+#app-container {
+    width: 420px;
+    display: block;
+    position: relative ;
+    margin: 10px auto ;
+    background: #fff;
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+    overflow: hidden;  
+}
+.selected
+{
+
+}
+header {
+    background-color: $dark-brown;
+    color: #fff;
+    padding: 15px ;
+    box-shadow: 0 2px 2px -2px #444;
+    @include flexbox;
+    @include align-items(center) ;
+    @include justify-content(center);
+}
+.heading-user {
+    width: 70%;
+}
+.icons {
+    width: 22%;
+    float: right;
+
+    i {
+        border: darken($dark-brown, 5%) 1px solid ;
+        border-radius: 4px;
+        padding: 5px;
+        background: lighten($dark-brown, 7%);
+    }
+}
+.main-contact {
+    display: inline-block;
+    float: left;
+    margin-right: 10px;
+    width: 10%;
+
+    img {
+        width: 35px;
+        border-radius: 50%;
+        border: #fff 2px solid;
+    }
+}
+nav {
+    color: $dark-brown;
+
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        list-style-type: none;
+        position: relative;
+        display: inline-block;
+        padding: 15px 0px;
+        margin: 0;
+        text-align: center;
+        font-size: 0.9em;
+        font-weight: 700;
+        width: 25%;
+        float: left;
+        background: darken(#fff, 10%);
+
+        &:hover {
+            background: darken(#fff, 15%);
+            cursor: pointer;
+        }
+
+        .selected {
+            border-top-color: darken(#fff, 15%);
+        }
+
+        &:first-child {
+            border-left: 0;
+        }
+    }
+}
+    .panel {
+        border-bottom: 1px solid #f1f1f1;
+        padding: 15px 10px 0
+    }
+
+    .form-search {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .form-add {
+        background-color: rgba(255, 255, 255, .9);
+        display: block;
+        width: 265px;
+        position: absolute;
+        padding: 10px;
+        border: 2px solid $primary-pink;
+        bottom: 20%;
+        left: 18%;
+
+        img {
+            max-width: 35%;
+        }
+
+        label {
+            text-transform: uppercase;
+            font-weight: 700;
+            margin: 10px 0;
+            display: block
+        }
+    }
+
+    .form-input {
+        border-radius: 25px;
+        border: 1px solid #f1f1f1;
+        height: 35px;
+        padding: 5px;
+        padding-left: 35px;
+        display: block;
+        width: 89%;
+    }
+
+    .search-icon {
+        position: absolute;
+        left: 10px;
+        top: 11px;
+        color: $text-color;
+    }
+
+    .refresh-icon {
+        position: absolute;
+        top: 11px;
+        right: 10px;
+        color: $text-color;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .contact-list {
+        margin: 0;
+        padding: 0;
+
+        li {
+            @include flexbox;
+            @include align-items(center);
+            @include justify-content(center);
+            @extend .panel;
+            color: lighten(#444, 30%);
+            padding: 10px;
+
+            &:nth-child(even) {
+                background: darken(#fff, 3%);
+            }
+        }
+
+        img {
+            border-radius: 50%;
+            float: left;
+            margin-left: 10px;
+            width: 10%;
+            height: 45px;
+            margin-right: 10px;
+        }
+
+        .heading--name {
+            color: #444;
+            padding: 0;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        .contact-info {
+            width: 80%
+        }
+
+        .contact-item {
+            display: inline-block;
+            font-size: 0.7em;
+
+            .fa {
+                font-size: 1.3em ;
+                margin-right: 2px ;
+                margin-left: 2px
+            }
+        }
+    }
+
