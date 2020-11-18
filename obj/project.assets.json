@@ -10819,23 +10819,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\HP\\.nuget\\packages\\": {},
+    "C:\\Users\\saurabh biswas\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HP\\Source\\Repos\\Project_CE011_CE018\\MII-Media.csproj",
+      "projectUniqueName": "C:\\Users\\saurabh biswas\\Desktop\\Project_CE011_CE018\\MII-Media.csproj",
       "projectName": "MII-Media",
-      "projectPath": "C:\\Users\\HP\\Source\\Repos\\Project_CE011_CE018\\MII-Media.csproj",
-      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HP\\Source\\Repos\\Project_CE011_CE018\\obj\\",
+      "projectPath": "C:\\Users\\saurabh biswas\\Desktop\\Project_CE011_CE018\\MII-Media.csproj",
+      "packagesPath": "C:\\Users\\saurabh biswas\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\saurabh biswas\\Desktop\\Project_CE011_CE018\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\saurabh biswas\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
