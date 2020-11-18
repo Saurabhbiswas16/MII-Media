@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewData["Title"] = "FriendsProfile";
+}
+
+
+@{
+    Layout = "_Layout";
+}
+
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+<link href="~/css/Profile.css" rel="stylesheet" />
+@if (SignInManager.IsSignedIn(User))
+{
+
+<header>
+
+    @{
+        var friendProfile = ViewBag.friendProfile;
+        var tempBio = "No Bio";
+    }
+    <div class="container">
+
+        <div class="profile">
+
+            <div class="profile-image">
+                <img src="~/images/@(friendProfile.ProfilePicPath)" alt="" height="100" width="100">
+
+            </div>
+
+            <div class="profile-user-settings">
+
+                <h1 class="profile-user-name">@(friendProfile.UserName)</h1><span>
+                    
+                </span>
+
+
+
+
+
+            </div>
+
+            <div class="profile-stats">
+
+                <ul>
+                    <li><span class="profile-stat-count">164</span> posts</li>
+                    <a class="btn btn-primary btn-lg active" asp-controller="Friend" asp-action="GetAllFriends">
+                        <li><span class="profile-stat-count">200</span> Friends</li>
+                    </a>
+
+
+                </ul>
+
+            </div>
+
+            <div class="profile-bio">
+
+                <p><span class="profile-real-name">@(friendProfile.FirstName)  @(friendProfile.LastName)</span> </p>
+                <p><span> @(friendProfile.Bio ?? tempBio)   </span></p>
+
+            </div>
+
+        </div>
+        <!-- End of profile section -->
+
+    </div>
+    <!-- End of container -->
+
+</header>
+
+    @*<main>
+
+        <div class="container">
+
+            <div class="gallery">
+                @foreach (Post post in ViewBag.AllPosts)
+                {
+                    <div class="gallery-item" tabindex="0">
+
+                        <img src="~/images/@post.PostPath" class="gallery-image" alt="">
+
+                        <div class="gallery-item-info">
+
+                            <ul>
+                                <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i>@post.Likes</li>
+                                <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i>11</li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+                }
+
+
+               
+
+
+
+
+
+            </div>
+            
+
+            <div class="loader"></div>
+
+        </div>
+       
+
+    </main>*@
+}
+
