@@ -37,12 +37,10 @@ namespace MII_Media
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<MiiContext>().AddDefaultTokenProviders();
             
-
-            //Dont delete
-            /*services.Configure<IdentityOptions>(options =>
+            services.Configure<IdentityOptions>(options =>
             {
                 options.SignIn.RequireConfirmedEmail = true;
-            });*/
+            });
 
             services.ConfigureApplicationCookie(config =>
             {

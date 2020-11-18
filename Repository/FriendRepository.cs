@@ -30,25 +30,24 @@ namespace MII_Media.Repository
             this.miiContext = miiContext;
         }
 
-        public async Task<Friend> SendRequestConfirmed(string user1, string user2)
+        public async Task<Friend> SendRequestConfirmed(Friend friend)
         {
-
             Friend addFriend = new Friend();
-            addFriend.User1 = user1;
-            addFriend.User2 = user2;
+            addFriend.User1 = friend.User1;
+            addFriend.User2 = friend.User2;
             addFriend.Sent = true;
             addFriend.Receive = false;
             addFriend.Confirmed = false;
             await miiContext.Friends.AddAsync(addFriend);
             await miiContext.SaveChangesAsync();
-            Friend friend1 = await ReceiveRequestConfirmed(user1,user2);
+            Friend friend1 = await ReceiveRequestConfirmed(friend);
             return addFriend;
         }
-        public async Task<Friend> ReceiveRequestConfirmed(string user1, string user2)
+        public async Task<Friend> ReceiveRequestConfirmed(Friend friend)
         {
             Friend ReceiveAddFriend = new Friend();
-            ReceiveAddFriend.User1 = user2;
-            ReceiveAddFriend.User2 = user1;
+            ReceiveAddFriend.User1 = friend.User2;
+            ReceiveAddFriend.User2 = friend.User1;
             ReceiveAddFriend.Receive = true;
             ReceiveAddFriend.Sent = false;
             ReceiveAddFriend.Confirmed = false;
@@ -97,21 +96,6 @@ namespace MII_Media.Repository
             }
             return userList;
             
-        }
-
-        public async Task<bool> FriendsConfirmed(string user1,string user2)
-        {
-
-            var receiveUser = miiContext.Friends.Include(r => r.User2).FirstOrDefault(r => r.User1 == user1 && r.Confirmed == true && r.User2 == user2);
-            if (receiveUser==null)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-
         }
     }
 }
