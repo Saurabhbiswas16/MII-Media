@@ -15,12 +15,14 @@ namespace MII_Media.Controllers
         private readonly IFriendRepository friendRepository;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly MiiContext miiContext;
+        private readonly IPostRepository postRepository;
 
-        public FriendController(IFriendRepository friendRepository, UserManager<ApplicationUser> userManager, MiiContext miiContext)
+        public FriendController(IFriendRepository friendRepository, UserManager<ApplicationUser> userManager, MiiContext miiContext, IPostRepository postRepository)
         {
             this.friendRepository = friendRepository;
             this.userManager = userManager;
             this.miiContext = miiContext;
+            this.postRepository = postRepository;
         }
 
         public async Task<IActionResult> Index()
@@ -76,6 +78,7 @@ namespace MII_Media.Controllers
         {
             var User = await userManager.FindByEmailAsync(Email);
             ViewBag.friendProfile = User;
+            ViewBag.AllPosts = postRepository.GetAllPosts(Email);
             /*if ()
             {
                 

@@ -28,6 +28,7 @@
           "Microsoft.AspNet.Providers.Core": "2.0.0",
           "Microsoft.AspNetCore.Identity": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.0",
+          "Microsoft.CodeAnalysis.Analyzers": "3.3.1",
           "Microsoft.EntityFrameworkCore": "5.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.0",
           "Microsoft.EntityFrameworkCore.Sqlite": "5.0.0",
@@ -570,10 +571,10 @@
           "System.Text.Encodings.Web": "5.0.0"
         }
       },
-      "Microsoft.CodeAnalysis.Analyzers/2.9.4": {},
+      "Microsoft.CodeAnalysis.Analyzers/3.3.1": {},
       "Microsoft.CodeAnalysis.Common/3.3.1": {
         "dependencies": {
-          "Microsoft.CodeAnalysis.Analyzers": "2.9.4",
+          "Microsoft.CodeAnalysis.Analyzers": "3.3.1",
           "System.Collections.Immutable": "5.0.0",
           "System.Memory": "4.5.3",
           "System.Reflection.Metadata": "1.6.0",
@@ -4843,12 +4844,12 @@
       "path": "microsoft.aspnetcore.webutilities/2.2.0",
       "hashPath": "microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512"
     },
-    "Microsoft.CodeAnalysis.Analyzers/2.9.4": {
+    "Microsoft.CodeAnalysis.Analyzers/3.3.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-alIJhS0VUg/7x5AsHEoovh/wRZ0RfCSS7k5pDSqpRLTyuMTtRgj6OJJPRApRhJHOGYYsLakf1hKeXFoDwKwNkg==",
-      "path": "microsoft.codeanalysis.analyzers/2.9.4",
-      "hashPath": "microsoft.codeanalysis.analyzers.2.9.4.nupkg.sha512"
+      "sha512": "sha512-xJBuqrO6P6a9O9BOtzGzQo4E8ZTNY4iygpzO5AAQzo9sKA/siX4+jvW1UFVlXpRdh3mirY/PMYu57vjGSw2ezg==",
+      "path": "microsoft.codeanalysis.analyzers/3.3.1",
+      "hashPath": "microsoft.codeanalysis.analyzers.3.3.1.nupkg.sha512"
     },
     "Microsoft.CodeAnalysis.Common/3.3.1": {
       "type": "package",

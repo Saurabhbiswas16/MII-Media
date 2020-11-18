@@ -1147,8 +1147,6 @@ C:\Users\HP\Source\Repos\Project_CE011_CE018\bin\Debug\netcoreapp3.1\pt-PT\Hangf
 C:\Users\HP\Source\Repos\Project_CE011_CE018\bin\Debug\netcoreapp3.1\pt\Hangfire.Core.resources.dll
 C:\Users\HP\Source\Repos\Project_CE011_CE018\bin\Debug\netcoreapp3.1\zh-TW\Hangfire.Core.resources.dll
 C:\Users\HP\Source\Repos\Project_CE011_CE018\bin\Debug\netcoreapp3.1\zh\Hangfire.Core.resources.dll
-C:\Users\HP\Source\Repos\Project_CE011_CE018\obj\Debug\netcoreapp3.1\MII-Media.csproj.CoreCompileInputs.cache
-C:\Users\HP\Source\Repos\Project_CE011_CE018\obj\Debug\netcoreapp3.1\MII-Media.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\HP\Source\Repos\Project_CE011_CE018\obj\Debug\netcoreapp3.1\Razor\Views\Comment\Create.cshtml.g.cs
 C:\Users\HP\Source\Repos\Project_CE011_CE018\obj\Debug\netcoreapp3.1\Razor\Views\Comment\Delete.cshtml.g.cs
 C:\Users\HP\Source\Repos\Project_CE011_CE018\obj\Debug\netcoreapp3.1\Razor\Views\Post\Create.cshtml.g.cs
@@ -1182,3 +1180,10 @@ C:\Users\saurabh biswas\Desktop\Project_CE011_CE018\obj\Debug\netcoreapp3.1\Razo
 C:\Users\saurabh biswas\Desktop\Project_CE011_CE018\obj\Debug\netcoreapp3.1\Razor\Views\Friend\ReceiveRequestConfirmed.cshtml.g.cs
 C:\Users\saurabh biswas\Desktop\Project_CE011_CE018\obj\Debug\netcoreapp3.1\Razor\Views\Friend\ListUsers.cshtml.g.cs
 C:\Users\saurabh biswas\Desktop\Project_CE011_CE018\obj\Debug\netcoreapp3.1\Razor\Views\Friend\UnknownFriendsProfile.cshtml.g.cs
+C:\Users\HP\Source\Repos\Project_CE011_CE018\obj\Debug\netcoreapp3.1\Razor\Views\Friend\FriendsProfile.cshtml.g.cs
+C:\Users\HP\Source\Repos\Project_CE011_CE018\obj\Debug\netcoreapp3.1\Razor\Views\Friend\ListUsers.cshtml.g.cs
+C:\Users\HP\Source\Repos\Project_CE011_CE018\obj\Debug\netcoreapp3.1\Razor\Views\Friend\ReceiveRequestConfirmed.cshtml.g.cs
+C:\Users\HP\Source\Repos\Project_CE011_CE018\obj\Debug\netcoreapp3.1\Razor\Views\Friend\UnknownFriendsProfile.cshtml.g.cs
+C:\Users\HP\Source\Repos\Project_CE011_CE018\obj\Debug\netcoreapp3.1\MII-Media.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\Source\Repos\Project_CE011_CE018\obj\Debug\netcoreapp3.1\MII-Media.csproj.CoreCompileInputs.cache
+C:\Users\HP\Source\Repos\Project_CE011_CE018\obj\Debug\netcoreapp3.1\MII-Media.MvcApplicationPartsAssemblyInfo.cache

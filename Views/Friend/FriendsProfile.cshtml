@@ -72,37 +72,33 @@
 
 </header>
 
-    @*<main>
+    <main>
 
         <div class="container">
 
             <div class="gallery">
                 @foreach (Post post in ViewBag.AllPosts)
                 {
-                    <div class="gallery-item" tabindex="0">
+                    <a asp-controller="post" asp-action="details"
+                       asp-route-id="@post.PostId" class="btn m-1">
+                        <div class="gallery-item" tabindex="0">
 
-                        <img src="~/images/@post.PostPath" class="gallery-image" alt="">
+                            <img src="~/images/@post.PostPath" class="gallery-image" alt="">
 
-                        <div class="gallery-item-info">
+                            <div class="gallery-item-info">
 
-                            <ul>
-                                <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i>@post.Likes</li>
-                                <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i>11</li>
-                            </ul>
+                                <ul>
+                                    <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i>@post.Likes</li>
+                                    <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i>11</li>
+                                </ul>
+
+                            </div>
 
                         </div>
-
-                    </div>
+                    </a>
                 }
 
-
-               
-
-
-
-
-
-            </div>
+                </div>
             
 
             <div class="loader"></div>
@@ -110,6 +106,6 @@
         </div>
        
 
-    </main>*@
+    </main>
 }
 
