@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using MII_Media.Data;
 using MII_Media.Models;
 using System;
@@ -11,10 +12,12 @@ namespace MII_Media.Repository
     public class SQLPostRepository : IPostRepository
     {
         private readonly MiiContext context;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public SQLPostRepository(MiiContext context)
+        public SQLPostRepository(MiiContext context, UserManager<ApplicationUser> userManager)
         {
             this.context = context;
+            this.userManager = userManager;
         }
 
         Post IPostRepository.Add(Post Post)
@@ -35,9 +38,15 @@ namespace MII_Media.Repository
             return post;
         }
 
-        IEnumerable<Post> IPostRepository.GetAllPosts()
+        //IEnumerable<Post> IPostRepository.GetAllPosts()
+        //{
+        //    return context.Posts;
+        //}
+
+        IEnumerable<Post> IPostRepository.GetAllPosts(string email)
         {
-            return context.Posts;
+            return context.Posts.Where(p => p.AppUser == email);
+            //throw new NotImplementedException();
         }
 
         Post IPostRepository.GetPost(int PostId)

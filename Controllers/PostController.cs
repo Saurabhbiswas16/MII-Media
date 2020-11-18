@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Hangfire;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MII_Media.Models;
 using MII_Media.Repository;
@@ -16,11 +17,16 @@ namespace MII_Media.Controllers
     {
         private readonly IPostRepository _postRepo;
         private readonly IWebHostEnvironment hostingEnvironment;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public PostController(IPostRepository postRepo, IWebHostEnvironment hostingEnvironment)
+        private string curUser;
+
+        
+        public PostController(IPostRepository postRepo, IWebHostEnvironment hostingEnvironment, UserManager<ApplicationUser> userManager)
         {
             _postRepo = postRepo;
             this.hostingEnvironment = hostingEnvironment;
+            this.userManager = userManager;
         }
 
         public ViewResult Create()
@@ -28,7 +34,7 @@ namespace MII_Media.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(PostCreateViewModel model)
+        public async Task<IActionResult> Create(PostCreateViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -44,10 +50,12 @@ namespace MII_Media.Controllers
                         model.Post.CopyTo(fileStream);
                     }
                 }
+                curUser = await userManager.GetEmailAsync(await userManager.GetUserAsync(User));
                 Post post = new Post
                 {
                     PostPath = uniqueFileName,
-                    Caption = model.Caption
+                    Caption = model.Caption,
+                    AppUser=curUser
                 };
                 var wait = (model.UploadTime - DateTime.Now).TotalMilliseconds;
                 if (wait >= 0)
@@ -60,9 +68,9 @@ namespace MII_Media.Controllers
             }
             return View();
         }
-        public ViewResult Index()
+        public async Task<ViewResult> Index()
         {
-            var model = _postRepo.GetAllPosts();
+            var model = _postRepo.GetAllPosts(await userManager.GetEmailAsync(await userManager.GetUserAsync(User)));
             return View(model);
         }
         public ViewResult Details(int Id)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using MII_Media.Data;
@@ -16,11 +17,13 @@ namespace MII_Media.Controllers
     {
         private readonly IAccountRepository accountRepository;
         private readonly IPostRepository postRepository;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public AccountController(IAccountRepository accountRepository, IPostRepository postRepository)
+        public AccountController(IAccountRepository accountRepository, IPostRepository postRepository, UserManager<ApplicationUser> userManager)
         {
             this.accountRepository = accountRepository;
             this.postRepository = postRepository;
+            this.userManager = userManager;
         }
 
         // private MiiContext context = new MiiContext();
@@ -218,10 +221,10 @@ namespace MII_Media.Controllers
             return View(model);
         }
         [HttpGet("profile")]
-        public IActionResult Profile()
+        public async Task<IActionResult> Profile()
         {
             // var result =accountRepository.GetProfile();
-            ViewBag.AllPosts = postRepository.GetAllPosts();
+            ViewBag.AllPosts = postRepository.GetAllPosts(await userManager.GetEmailAsync(await userManager.GetUserAsync(User)));
             return View();
         }
 

@@ -11,9 +11,9 @@ namespace MII_Media.Models
         public string Caption { get; set; }
         public string PostPath { get; set; }
         public int Likes { get; set; }
-        public int ApplicationUserId { get; set; }
-        public ApplicationUser ApplicationUser { get; set; }
-
+        //public int ApplicationUserId { get; set; }
+        //public ApplicationUser ApplicationUser { get; set; }
+        public string AppUser { get; set; }
         public List<Comment> Comments { get; set; }
     }
 }

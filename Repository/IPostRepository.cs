@@ -9,7 +9,7 @@ namespace MII_Media.Repository
     public interface IPostRepository
     {
         Post GetPost(int PostId);
-        IEnumerable<Post> GetAllPosts();
+        IEnumerable<Post> GetAllPosts(string email);
         Post Add(Post Post);
         Post Update(Post PostChanges);
         Post Delete(int Id);

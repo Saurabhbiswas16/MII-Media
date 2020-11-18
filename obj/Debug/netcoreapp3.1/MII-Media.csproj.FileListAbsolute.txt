@@ -1177,3 +1177,4 @@ C:\Users\saurabh biswas\Desktop\Project_CE011_CE018\obj\Debug\netcoreapp3.1\Razo
 C:\Users\saurabh biswas\Desktop\Project_CE011_CE018\obj\Debug\netcoreapp3.1\Razor\Views\Post\Edit.cshtml.g.cs
 C:\Users\saurabh biswas\Desktop\Project_CE011_CE018\obj\Debug\netcoreapp3.1\Razor\Views\Post\Index.cshtml.g.cs
 C:\Users\saurabh biswas\Desktop\Project_CE011_CE018\obj\Debug\netcoreapp3.1\Razor\Views\Friend\GetAllFriends.cshtml.g.cs
+C:\Users\HP\Source\Repos\Project_CE011_CE018\obj\Debug\netcoreapp3.1\Razor\Views\Friend\GetAllFriends.cshtml.g.cs
