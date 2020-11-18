@@ -20,7 +20,7 @@
 <header>
 
     @{
-        var friendProfile = ViewBag.friendProfile;
+        ApplicationUser friendProfile = ViewBag.friendProfile;
         var tempBio = "No Bio";
     }
     <div class="container">
@@ -40,7 +40,7 @@
 
 
 
-
+               
 
             </div>
 
@@ -48,7 +48,7 @@
 
                 <ul>
                     <li><span class="profile-stat-count">164</span> posts</li>
-                    <a class="btn btn-primary btn-lg active" asp-controller="Friend" asp-action="GetAllFriends">
+                    <a class="btn btn-primary btn-lg active" asp-controller="Friend" asp-action="UnknownFriendsProfile" asp-route-email=@(friendProfile.Email)>
                         <li><span class="profile-stat-count">200</span> Friends</li>
                     </a>
 

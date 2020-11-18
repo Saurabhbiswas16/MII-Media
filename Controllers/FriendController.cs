@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MII_Media.Data;
 using MII_Media.Models;
 using MII_Media.Repository;
 
@@ -13,11 +14,13 @@ namespace MII_Media.Controllers
     {
         private readonly IFriendRepository friendRepository;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly MiiContext miiContext;
 
-        public FriendController(IFriendRepository friendRepository, UserManager<ApplicationUser> userManager)
+        public FriendController(IFriendRepository friendRepository, UserManager<ApplicationUser> userManager, MiiContext miiContext)
         {
             this.friendRepository = friendRepository;
             this.userManager = userManager;
+            this.miiContext = miiContext;
         }
 
         public async Task<IActionResult> Index()
@@ -73,8 +76,31 @@ namespace MII_Media.Controllers
         {
             var User = await userManager.FindByEmailAsync(Email);
             ViewBag.friendProfile = User;
-           // var result = await friendRepository.FetchedAllFriends(currentUser.Email);
+            /*if ()
+            {
+                
+            }
+            else
+            {
+
+            }*/
+            // var result = await friendRepository.FetchedAllFriends(currentUser.Email);
             return View();
+        }
+        [HttpGet("ListUsers")]
+        public ActionResult ListUsers()
+        {
+            return View(miiContext.Users.ToList());
+        }
+
+
+        [HttpGet("UnknownFriendsProfile/${Email}")]
+        public async Task<IActionResult> UnknownFriendsProfile(string Email)
+        {
+            //var currentUser = await userManager.GetUserAsync(User);
+
+            var result = await friendRepository.FetchedAllFriends(Email);
+            return View(result);
         }
     }
 }

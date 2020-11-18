@@ -1180,3 +1180,5 @@ C:\Users\saurabh biswas\Desktop\Project_CE011_CE018\obj\Debug\netcoreapp3.1\Razo
 C:\Users\HP\Source\Repos\Project_CE011_CE018\obj\Debug\netcoreapp3.1\Razor\Views\Friend\GetAllFriends.cshtml.g.cs
 C:\Users\saurabh biswas\Desktop\Project_CE011_CE018\obj\Debug\netcoreapp3.1\Razor\Views\Friend\FriendsProfile.cshtml.g.cs
 C:\Users\saurabh biswas\Desktop\Project_CE011_CE018\obj\Debug\netcoreapp3.1\Razor\Views\Friend\ReceiveRequestConfirmed.cshtml.g.cs
+C:\Users\saurabh biswas\Desktop\Project_CE011_CE018\obj\Debug\netcoreapp3.1\Razor\Views\Friend\ListUsers.cshtml.g.cs
+C:\Users\saurabh biswas\Desktop\Project_CE011_CE018\obj\Debug\netcoreapp3.1\Razor\Views\Friend\UnknownFriendsProfile.cshtml.g.cs

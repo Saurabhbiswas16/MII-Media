@@ -1,0 +1,47 @@
+﻿
+
+@model IEnumerable<ApplicationUser>;
+@{
+    ViewData["Title"] = "ListUsers";
+}
+
+
+<link href="~/css/Friends.css" rel="stylesheet" />
+
+@*??~/images/@freind.ProfilePicPath "https://bootdey.com/img/Content/avatar/avatar7.png")'*@
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="people-nearby">
+                <div class="nearby-user">
+
+                    @foreach (var freind in Model)
+                    {
+
+                        var photoPath = "~/images/" + (@freind.ProfilePicPath ?? "avatar.png");
+
+                        <div class="row">
+                            <div class="col-md-2 col-sm-2">
+                                <img src="~/images/@freind.ProfilePicPath" alt="User" class="profile-photo-lg">
+                            </div>
+                            <div class="col-md-7 col-sm-7">
+                                <h5><a href="#" class="profile-link">@freind.FirstName  @freind.LastName</a></h5>
+                                <p>@freind.Email</p>
+                                <p class="text-muted">@freind.DOB</p>
+                            </div>
+                            <div class="col-md-3 col-sm-3">
+                                <a asp-action="FriendsProfile" asp-controller="Friend" asp-route-email="@freind.Email" class="btn btn-primary pull-right">Profile</a>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
