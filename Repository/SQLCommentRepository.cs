@@ -37,7 +37,7 @@ namespace MII_Media.Repository
 
         Comment ICommentRepository.GetComment(int Id)
         {
-            return context.Comments.Include(c => c.ApplicationUser).FirstOrDefault(c => c.CommentId == Id);
+            return context.Comments.Find(Id);//Include(c => c.Commenter).FirstOrDefault(c => c.CommentId == Id);
         }
 
         //Comment ICommentRepository.Update(Comment CommentChanges)

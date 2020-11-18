@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 using MII_Media.Models;
@@ -13,10 +14,12 @@ namespace MII_Media.Controllers
     public class CommentController : Controller
     {
         private readonly ICommentRepository _comRepo;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public CommentController(ICommentRepository comRepo)
+        public CommentController(ICommentRepository comRepo, UserManager<ApplicationUser> userManager)
         {
             _comRepo = comRepo;
+            this.userManager = userManager;
         }
         [HttpGet]
         public IActionResult Create(int Id)
@@ -26,7 +29,7 @@ namespace MII_Media.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(CommentCreateViewModel _comment)
+        public async Task<IActionResult> Create(CommentCreateViewModel _comment)
         {
             Comment comment = null;
             if (ModelState.IsValid)
@@ -35,7 +38,8 @@ namespace MII_Media.Controllers
                 {
                     Message = _comment.Message,
                     CommentTime = DateTime.Now,
-                    PostId = _comment.PostId
+                    PostId = _comment.PostId,
+                    Commenter = await userManager.GetEmailAsync(await userManager.GetUserAsync(User))
                 };
                 _comRepo.Add(comment);
                 return RedirectToAction("Details", "Post", new { id = comment.PostId });
@@ -63,7 +67,7 @@ namespace MII_Media.Controllers
         {
             var comment = _comRepo.GetComment(Id);
             _comRepo.Delete(comment.CommentId);
-            return RedirectToAction("Index", "Post");
+            return RedirectToAction("Profile", "Account");
         }
         //public IActionResult Index()
         //{

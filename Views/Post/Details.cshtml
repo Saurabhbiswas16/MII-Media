@@ -16,8 +16,8 @@
                 <h4>Comments:</h4>
                 @foreach (var com in Model.Comments)
                 {
-                    //<h5>@com.ApplicationUserId</h5>
-                    <h5>@com.Message</h5>
+                    <h5 style="font-family:'Times New Roman', Times, serif">@com.Commenter</h5>
+                    <h6>@com.Message</h6>
                     <a asp-controller="comment" asp-action="delete"
                        asp-route-id="@com.CommentId" class="btn btn-danger">Delete Comment</a>
                     <hr />
