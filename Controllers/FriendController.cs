@@ -68,5 +68,13 @@ namespace MII_Media.Controllers
             var result = await friendRepository.FetchedAllFriends(currentUser.Email);
             return View(result);
         }
+        [HttpGet("FriendsProfile/${Email}")]
+        public async Task<IActionResult> FriendsProfile(string Email)
+        {
+            var User = await userManager.FindByEmailAsync(Email);
+            ViewBag.friendProfile = User;
+           // var result = await friendRepository.FetchedAllFriends(currentUser.Email);
+            return View();
+        }
     }
 }

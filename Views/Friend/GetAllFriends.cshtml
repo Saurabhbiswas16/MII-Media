@@ -31,7 +31,7 @@
                                 <p class="text-muted">@freind.DOB</p>
                             </div>
                             <div class="col-md-3 col-sm-3">
-                                <button class="btn btn-primary pull-right">Profile</button>
+                                <a asp-action="FriendsProfile" asp-controller="Friend" asp-route-email="@freind.Email" class="btn btn-primary pull-right">Profile</a>
                             </div>
                         </div>
 
