@@ -22,6 +22,8 @@
         @{
             ApplicationUser friendProfile = ViewBag.friendProfile;
             var tempBio = "No Bio";
+            var tmpImg = "~/images/avatar.png";
+            var profilePic = "~/images/" + friendProfile.ProfilePicPath;
         }
         <div class="container">
 
@@ -80,6 +82,7 @@
                 <div class="gallery">
                     @foreach (Post post in ViewBag.AllPosts)
                     {
+
                         <a asp-controller="post" asp-action="details"
                            asp-route-id="@post.PostId" class="btn m-1">
                             <div class="gallery-item" tabindex="0">
