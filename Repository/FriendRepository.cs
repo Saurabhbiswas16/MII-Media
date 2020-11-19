@@ -57,9 +57,9 @@ namespace MII_Media.Repository
         }
 
 
-        public async Task<Friend> GetAllReceiveRequest(string email)
+        public async Task<IEnumerable<Friend>> GetAllReceiveRequest(string email)
         {
-            return   miiContext.Friends.Include(r => r.User2).FirstOrDefault(r=> r.User1 ==email && r.Receive==true);
+            return   miiContext.Friends.Where(r=> r.User1 ==email && r.Receive==true);
         }
         public async Task<Friend>  ConfirmedRequestReceive(int friendId)
         {

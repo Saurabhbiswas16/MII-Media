@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MII_Media.Data;
@@ -10,6 +11,7 @@ using MII_Media.Repository;
 
 namespace MII_Media.Controllers
 {
+    [Authorize]
     public class FriendController : Controller
     {
         private readonly IFriendRepository friendRepository;
@@ -48,8 +50,8 @@ namespace MII_Media.Controllers
         {
             var currentUser = await userManager.GetUserAsync(User);
             var result = await friendRepository.SendRequestConfirmed(currentUser.Email, Email);
-            RedirectToAction("GetAllFriends", "Friend");
-            return View(result);
+            
+            return RedirectToAction("ListUsers", "Friend");
         }
 
         [HttpGet("ReceiveRequest")]
@@ -69,7 +71,7 @@ namespace MII_Media.Controllers
             var result = await friendRepository.ConfirmedRequestReceive(id);
 
 
-            return View();
+            return RedirectToAction("GetAllFriends", "Friend");
 
         }
 

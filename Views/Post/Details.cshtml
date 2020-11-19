@@ -3,7 +3,13 @@
     ViewData["Title"] = "Details";
     var photoPath = "~/images/" + Model.PostPath;
 }
-
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@*@inject IEnumerable<MII_Media.Models.Post> posts*@
+@{
+    var user = await UserManager.GetUserAsync(User);
+}
 <h1>Details</h1>
 <div class="row justify-content-center m-3">
     <div class="col-sm-8">
@@ -16,20 +22,28 @@
                 <h4>Comments:</h4>
                 @foreach (var com in Model.Comments)
                 {
-                    <h5 style="font-family:'Times New Roman', Times, serif">@com.Commenter</h5>
-                    <h6>@com.Message</h6>
-                    <a asp-controller="comment" asp-action="delete"
-                       asp-route-id="@com.CommentId" class="btn btn-danger">Delete Comment</a>
+                    <p class="text-muted">@com.Commenter</p>
+                    <h5> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong> @com.Message </strong></h5>
+                    @if (com.Commenter == user.Email || Model.AppUser == user.Email)
+                    {
+                        <a asp-controller="comment" asp-action="delete"
+                           asp-route-id="@com.CommentId" class="btn btn-danger">Delete Comment</a>
+
+                    }
                     <hr />
                 }
             </div>
             <div class="card-footer text-center">
                 <a asp-controller="account" asp-action="profile" class="btn btn-secondary">Back</a>
-                <a asp-controller="post" asp-action="edit"
-                   asp-route-id="@Model.PostId" class="btn btn-primary">Edit</a>
-                <a asp-controller="post" asp-action="delete"
-                   asp-route-id="@Model.PostId" class="btn btn-danger">Delete</a>
-                <a asp-controller="comment" asp-action="create" 
+                @if (Model.AppUser == user.Email)
+                {
+
+                    <a asp-controller="post" asp-action="edit"
+                       asp-route-id="@Model.PostId" class="btn btn-primary">Edit</a>
+                    <a asp-controller="post" asp-action="delete"
+                       asp-route-id="@Model.PostId" class="btn btn-danger">Delete</a>
+                }
+                <a asp-controller="comment" asp-action="create"
                    asp-route-id="@Model.PostId" class="btn btn-success">Add Comment</a>
 
             </div>

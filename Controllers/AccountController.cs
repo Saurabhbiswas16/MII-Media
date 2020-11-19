@@ -13,6 +13,7 @@ using MII_Media.ViewModels;
 
 namespace MII_Media.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly IAccountRepository accountRepository;
@@ -31,12 +32,13 @@ namespace MII_Media.Controllers
         //{
         //    this.accountRepository = accountRepository;
         //}
+        [AllowAnonymous]
         [Route("signup")]
         public IActionResult Signup()
         {
             return View();
         }
-
+        [AllowAnonymous]
         [Route("signup")]
         [HttpPost]
         public async Task<IActionResult> Signup(SignUpUserModel userModel)
@@ -57,11 +59,13 @@ namespace MII_Media.Controllers
             }
             return View(userModel);
         }
+        [AllowAnonymous]
         [Route("login")]
         public IActionResult Login()
         {
             return View();
         }
+        [AllowAnonymous]
         [Route("login")]
         [HttpPost]
         public async Task<IActionResult> Login(SignInModel signInModel)
@@ -116,8 +120,8 @@ namespace MII_Media.Controllers
             //await accountRepository.SignOutAsync();
             return View();
         }
-
-        [HttpGet("confirm-email")]
+        [AllowAnonymous]
+        [HttpGet("confirm-email/${uid}/${token}/${email}")]
         public async Task<IActionResult> ConfirmEmail(string uid, string token, string email)
         {
             EmailConfirmModel model = new EmailConfirmModel
@@ -137,7 +141,7 @@ namespace MII_Media.Controllers
 
             return View(model);
         }
-
+        [AllowAnonymous]
         [HttpPost("confirm-email")]
         public async Task<IActionResult> ConfirmEmail(EmailConfirmModel model)
         {
@@ -189,7 +193,7 @@ namespace MII_Media.Controllers
             return View(model);
         }
 
-        [AllowAnonymous, HttpGet("reset-password/{uid}/{token}")]
+        [AllowAnonymous, HttpGet("reset-password")]
         public IActionResult ResetPassword(string uid, string token)
         {
             ResetPasswordModel resetPasswordModel = new ResetPasswordModel

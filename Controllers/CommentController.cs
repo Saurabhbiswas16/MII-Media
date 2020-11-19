@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
@@ -11,6 +12,7 @@ using MII_Media.ViewModels;
 
 namespace MII_Media.Controllers
 {
+    [Authorize]
     public class CommentController : Controller
     {
         private readonly ICommentRepository _comRepo;

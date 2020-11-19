@@ -49,9 +49,9 @@
                 <div class="profile-stats">
 
                     <ul>
-                        <li><span class="profile-stat-count">164</span> posts</li>
+                        <li><span class="profile-stat-count"></span> posts</li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a class="btn btn-primary btn-lg active" asp-controller="Friend" asp-action="UnknownFriendsProfile" asp-route-email=@(friendProfile.Email)>
-                            <li><span class="profile-stat-count">200</span> Friends</li>
+                            <li><span class="profile-stat-count"></span> Friends</li>
                         </a>
 
 
@@ -116,7 +116,9 @@
     {
         <main>
             <div class="container">
-                <a asp-action="SendRequest" asp-controller="Friend" asp-route-email="@friendProfile.Email" type="button" class="btn btn-primary btn-lg">Send Request</a>
+                <a asp-action="SendRequest" asp-controller="Friend" asp-route-email="@friendProfile.Email" type="button" class="btn btn-primary btn-lg" style="font-size: 25px;
+        background-color: #0275d8
+">Send Request</a>
             </div>
         </main>
     }

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Hangfire;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,7 @@ using MII_Media.ViewModels;
 
 namespace MII_Media.Controllers
 {
+    [Authorize]
     public class PostController : Controller
     {
         private readonly IPostRepository _postRepo;
@@ -64,7 +66,7 @@ namespace MII_Media.Controllers
                 }
 
                 
-                return RedirectToAction("index");
+                return RedirectToAction("Profile","Account");
             }
             return View();
         }

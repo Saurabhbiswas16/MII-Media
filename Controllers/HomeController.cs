@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -12,6 +13,7 @@ using MII_Media.Service;
 
 namespace MII_Media.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -33,7 +35,7 @@ namespace MII_Media.Controllers
         {
             //var userId = userService.GetUserId();
             string email = await userManager.GetEmailAsync(await userManager.GetUserAsync(User));
-            IList<string> friendLists= context.Friends.Where(c => c.User1 == email).Select(c => c.User2).ToList();
+            IList<string> friendLists= context.Friends.Where(c => c.User1 == email && c.Confirmed==true).Select(c => c.User2).ToList();
             friendLists.Add(email);
             IList<Post> displayPostList = new List<Post>();
             foreach(string mail in friendLists)
