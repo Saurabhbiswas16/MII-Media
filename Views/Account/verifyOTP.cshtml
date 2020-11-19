@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewData["Title"] = "verifyOTP";
+}
+
+@{
+    Layout = null;
+   
+}
+
+<environment include="Development">
+    <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+
+    <link href="~/css/NewStyle.css" rel="stylesheet" />
+    <link href="~/css/Site.css" rel="stylesheet" />
+</environment>
+<environment exclude="Development">
+    @*<link href="~/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />*@
+
+    <link rel="stylesheet"
+          href="http://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          asp-fallback-href="~/lib/twitter-bootstrap/css/bootstrap.min.css"
+          asp-fallback-test-class="sr-only"
+          asp-fallback-test-property="position"
+          asp-fallback-test-value="absolute"
+          integrity=""
+          crossorigin="anonymous">
+
+
+    <link href="~/css/site.min.css" rel="stylesheet" />
+</environment>
+
+<div class="container">
+
+    <h1 class="display-4">Reset password</h1>
+
+    <hr />
+    <div class="row">
+        <div class="offset-4 col-md-4">
+            @if (ViewBag.ConfirmedOTP == true)
+            {
+                <div class="alert alert-success" role="alert">
+                    <p>
+                        You have updated your password successfully.
+                    </p>
+                </div>
+
+                <div>
+                    <p>Back to  <a asp-action="Login" asp-controller="Account">Login</a></p>
+                </div>
+            }
+            else
+            {
+                <form asp-action="verifyOTP">
+
+
+                    <div class="form-group">
+                        <label for="NewPassword" class="control-label">NewPassword</label>
+                        <input type="password" name="NewPassword" class="form-control" />
+
+                    </div>
+                    <div class="form-group">
+                        <label for="ConfirmNewPassword" class="control-label">Confirm NewPassword</label>
+                        <input type="password" name="ConfirmNewPassword" class="form-control" />
+
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Reset password" class="btn btn-primary" />
+                    </div>
+                </form>
+            }
+
+        </div>
+    </div>
+
+</div>
+
+

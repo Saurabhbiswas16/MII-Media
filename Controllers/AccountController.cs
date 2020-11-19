@@ -45,7 +45,8 @@ namespace MII_Media.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await accountRepository.CreateUserAsync(userModel);
+                string OTP = RandomString(6);
+                var result = await accountRepository.CreateUserAsync(userModel,OTP);
                 if (!result.Succeeded)
                 {
                     foreach (var errorMessage in result.Errors)
@@ -55,7 +56,8 @@ namespace MII_Media.Controllers
                     return View(userModel);
                 }
                 ModelState.Clear();
-                return RedirectToAction("ConfirmEmail", new { email = userModel.Email });
+                // return RedirectToAction("ConfirmEmail", new { email = userModel.Email });
+                return RedirectToAction("emailConfirmed");
             }
             return View(userModel);
         }
@@ -132,6 +134,7 @@ namespace MII_Media.Controllers
             if (!string.IsNullOrEmpty(uid) && !string.IsNullOrEmpty(token))
             {
                 token = token.Replace(' ', '+');
+                
                 var result = await accountRepository.ConfirmEmailAsync(uid, token);
                 if (result.Succeeded)
                 {
@@ -153,8 +156,8 @@ namespace MII_Media.Controllers
                     model.EmailVerified = true;
                     return View(model);
                 }
-
-                await accountRepository.GenerateEmailConfirmationTokenAsync(user);
+                string OTP = RandomString(6);
+                await accountRepository.GenerateEmailConfirmationTokenAsync(user,OTP);
                 model.EmailSent = true;
                 ModelState.Clear();
             }
@@ -173,7 +176,13 @@ namespace MII_Media.Controllers
         {
             return View();
         }
-
+        private static Random random = new Random();
+        public static string RandomString(int length)
+        {
+            const string chars = "0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
 
         [AllowAnonymous, HttpPost("fotgot-password")]
         public async Task<IActionResult> ForgotPassword(ForgotPasswordModel model)
@@ -184,7 +193,9 @@ namespace MII_Media.Controllers
                 var user = await accountRepository.GetUserByEmailAsync(model.Email);
                 if (user != null)
                 {
-                    await accountRepository.GenerateForgotPasswordTokenAsync(user);
+                    string OTP = RandomString(6);
+                    ViewBag.forgotOTP = OTP;
+                    await accountRepository.GenerateForgotPasswordTokenAsync(user, OTP);
                 }
 
                 ModelState.Clear();
@@ -242,12 +253,12 @@ namespace MII_Media.Controllers
 
         }
         [HttpPost("edit-profile/${Email}")]
-        public async Task<IActionResult> EditProfile(EditProfile model,string Email)
+        public async Task<IActionResult> EditProfile(EditProfile model, string Email)
         {
             var result = await accountRepository.EditProfileConfirm(model);
-            if(result.Succeeded)
+            if (result.Succeeded)
             {
-                
+
                 return RedirectToAction("profile");
             }
 
@@ -255,6 +266,37 @@ namespace MII_Media.Controllers
 
         }
 
+
+        //setting
+        [AllowAnonymous]
+        [HttpGet]
+
+        public async Task<IActionResult> verifyOTP()
+        {
+            return View();
+        }
+        [AllowAnonymous]
+        [HttpPost]
+
+        public async Task<IActionResult> verifyOTP(string NewPassword, string ConfirmNewPassword)
+        {
+            ViewBag.ConfirmedOTP = true;
+            return View();
+        }
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<IActionResult> emailConfirmed()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> emailConfirmed(string OTP)
+        {
+            ViewBag.VerifiedEmail = true;
+            return View();
+        }
     }
 }
 

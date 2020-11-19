@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewData["Title"] = "emailConfirmed";
+}
+
+
+
+@{
+    Layout = null;
+    
+}
+
+<environment include="Development">
+    <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+
+    <link href="~/css/NewStyle.css" rel="stylesheet" />
+    <link href="~/css/Site.css" rel="stylesheet" />
+</environment>
+<environment exclude="Development">
+    @*<link href="~/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />*@
+
+    <link rel="stylesheet"
+          href="http://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          asp-fallback-href="~/lib/twitter-bootstrap/css/bootstrap.min.css"
+          asp-fallback-test-class="sr-only"
+          asp-fallback-test-property="position"
+          asp-fallback-test-value="absolute"
+          integrity=""
+          crossorigin="anonymous">
+
+
+    <link href="~/css/site.min.css" rel="stylesheet" />
+</environment>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-4 offset-4">
+            @if (ViewBag.VerifiedEmail ==null)
+            {
+                <div class="alert alert-success" role="alert">
+                    <p>
+                         
+                        We have sent an email on your given Email Address
+                    </p>
+                </div>
+                <div>
+                    <form asp-action="emailConfirmed" asp-controller="Account">
+                        <label for="OTP" class="control-label">OTP </label>
+                        <input type="text" name="OTP" value="" class="form-control" />
+                        <input type="submit" value="Verify OTP" class="btn btn-primary"/>
+                    </form>
+                    
+                </div>
+            }
+            else
+            {
+        <div class="alert alert-success" role="alert">
+            <p>
+
+                You have Successfully Verified Your email
+            </p>
+        </div>
+            }
+            <div>
+                <p>Back to  <a asp-action="Login" asp-controller="Account">Login</a></p>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+</div>
+

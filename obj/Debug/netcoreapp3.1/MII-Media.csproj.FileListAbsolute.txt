@@ -1188,3 +1188,5 @@ C:\Users\HP\Source\Repos\Project_CE011_CE018\obj\Debug\netcoreapp3.1\MII-Media.G
 C:\Users\HP\Source\Repos\Project_CE011_CE018\obj\Debug\netcoreapp3.1\MII-Media.csproj.CoreCompileInputs.cache
 C:\Users\HP\Source\Repos\Project_CE011_CE018\obj\Debug\netcoreapp3.1\MII-Media.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\saurabh biswas\Desktop\Project_CE011_CE018\obj\Debug\netcoreapp3.1\MII-Media.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\saurabh biswas\Desktop\Project_CE011_CE018\obj\Debug\netcoreapp3.1\Razor\Views\Account\verifyOTP.cshtml.g.cs
+C:\Users\saurabh biswas\Desktop\Project_CE011_CE018\obj\Debug\netcoreapp3.1\Razor\Views\Account\emailConfirmed.cshtml.g.cs

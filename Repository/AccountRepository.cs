@@ -35,7 +35,7 @@ namespace MII_Media.Repository
             this.emailService = emailService;
             this.hostingEnvironment = hostingEnvironment;
         }
-        public async Task<IdentityResult> CreateUserAsync(SignUpUserModel usermodel)
+        public async Task<IdentityResult> CreateUserAsync(SignUpUserModel usermodel,string OTP)
         {
             var user = new ApplicationUser()
             {
@@ -50,7 +50,7 @@ namespace MII_Media.Repository
             var result = await userManager.CreateAsync(user, usermodel.Password);
             if (result.Succeeded)
             {
-                await GenerateEmailConfirmationTokenAsync(user);
+                await GenerateEmailConfirmationTokenAsync(user,OTP);
             }
             return result;
         }
@@ -79,12 +79,12 @@ namespace MII_Media.Repository
         {
             return await userManager.FindByEmailAsync(email);
         }
-        public async Task GenerateEmailConfirmationTokenAsync(ApplicationUser user)
+        public async Task GenerateEmailConfirmationTokenAsync(ApplicationUser user,string OTP)
         {
             var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
             if (!string.IsNullOrEmpty(token))
             {
-                await SendEmailConfirmationEmail(user, token);
+                await SendEmailConfirmationEmail(user, token,OTP);
             }
         }
 
@@ -93,7 +93,7 @@ namespace MII_Media.Repository
             return await userManager.ConfirmEmailAsync(await userManager.FindByIdAsync(uid), token);
         }
 
-        private async Task SendEmailConfirmationEmail(ApplicationUser user, string token)
+        private async Task SendEmailConfirmationEmail(ApplicationUser user, string token,string OTP)
         {
             string appDomain = configuration.GetSection("Application:AppDomain").Value;
             string confirmationLink = configuration.GetSection("Application:EmailConfirmation").Value;
@@ -104,8 +104,9 @@ namespace MII_Media.Repository
                 PlaceHolders = new List<KeyValuePair<string, string>>()
                 {
                     new KeyValuePair<string, string>("{{UserName}}", user.FirstName),
-                    new KeyValuePair<string, string>("{{Link}}",
-                        string.Format(appDomain + confirmationLink, user.Id, token))
+                    new KeyValuePair<string, string>("{{OTP}}", OTP),
+                    /*new KeyValuePair<string, string>("{{Link}}",
+                        string.Format(appDomain + confirmationLink, user.Id, token))*/
                 }
             };
 
@@ -114,27 +115,30 @@ namespace MII_Media.Repository
 
         //forgot passwowrd
 
-        public async Task GenerateForgotPasswordTokenAsync(ApplicationUser user)
+        public async Task GenerateForgotPasswordTokenAsync(ApplicationUser user,string OTP)
         {
             var token = await userManager.GeneratePasswordResetTokenAsync(user);
             if (!string.IsNullOrEmpty(token))
             {
-                await SendForgotPasswordEmail(user, token);
+                await SendForgotPasswordEmail(user, token,OTP);
             }
         }
-        private async Task SendForgotPasswordEmail(ApplicationUser user, string token)
+
+        
+        private async Task SendForgotPasswordEmail(ApplicationUser user, string token, string OTP)
         {
             string appDomain = configuration.GetSection("Application:AppDomain").Value;
             string confirmationLink = configuration.GetSection("Application:ForgotPassword").Value;
-
+            
             UserEmailOptions options = new UserEmailOptions
             {
                 ToEmails = new List<string>() { user.Email },
                 PlaceHolders = new List<KeyValuePair<string, string>>()
                 {
                     new KeyValuePair<string, string>("{{UserName}}", user.FirstName),
-                    new KeyValuePair<string, string>("{{Link}}",
-                        string.Format(appDomain + confirmationLink, user.Id, token))
+                    new KeyValuePair<string, string>("{{OTP}}", OTP),
+                    /*new KeyValuePair<string, string>("{{Link}}",
+                        string.Format(appDomain + confirmationLink, user.Id, token))*/
                 }
             };
 

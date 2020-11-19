@@ -7,7 +7,7 @@ namespace MII_Media.Repository
 {
     public interface IAccountRepository
     {
-        Task<IdentityResult> CreateUserAsync(SignUpUserModel usermodel);
+        Task<IdentityResult> CreateUserAsync(SignUpUserModel usermodel,string OTP);
 
        Task<SignInResult> PasswordSignInAsync(SignInModel signInModel);
 
@@ -15,7 +15,7 @@ namespace MII_Media.Repository
 
         Task<IdentityResult> ChangePasswordAsync(ChangePasswordModel changePassword);
 
-        Task GenerateEmailConfirmationTokenAsync(ApplicationUser user);
+        Task GenerateEmailConfirmationTokenAsync(ApplicationUser user, string OTP);
 
         Task<IdentityResult> ConfirmEmailAsync(string uid, string token);
 
@@ -23,7 +23,7 @@ namespace MII_Media.Repository
 
         Task<ApplicationUser> GetUserByEmailAsync(string email);
 
-        Task GenerateForgotPasswordTokenAsync(ApplicationUser user);
+        Task GenerateForgotPasswordTokenAsync(ApplicationUser user, string OTP);
 
         Task<IdentityResult> ResetPasswordAsync(ResetPasswordModel model);
 
